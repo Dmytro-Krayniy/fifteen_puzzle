@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style="text-align:center">FIFTEEN PUZZLE"</h2>
+<br>
+<form style="text-align:center" action="" method="post">
+{{ form.csrf_token() }}
+{% for field in form if field.name not in ['csrf_token', 'submit'] %}
+    <p>{{ field.label() }}</p>
+    <p>{{ field }}</p>
+    <p>
+        {% for error in field.errors %}
+            {{ error }}
+        {% endfor %}
+    </p>
+{% endfor %}
+{{ form.submit }}
+</form>
+{% endblock %}

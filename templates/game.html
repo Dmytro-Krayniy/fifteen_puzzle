@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p>Let's do it, {{ name }}.</p>
+    <p class="counter">{{ game.counter }}</p>
+<table class="world">
+    {% for i in range(game.table|length) %}
+        <tr>
+        {% for j in range(game.table[0]|length) %}
+            {% if game.table[i][j] != 0 %}
+                <td class="cell">
+                    {{ game.table[i][j] }}
+                </td>
+            {% else %}
+                <td class="cell living-cell"></td>
+            {% endif %}
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+<p class="center">{{ game.message }}</p>
+<form action="" method="post">
+   <div class="control">
+    {{ form.csrf_token() }}
+    {{ form.up }}
+    <br>
+    <div class="content">
+        {{ form.left }}
+        <div class="cell living-cell"></div>
+        {{ form.right }}
+    </div>
+    {{ form.down }}
+   </div>
+</form>
+
+{% endblock %}
